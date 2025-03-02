@@ -1,3 +1,7 @@
+meu_pacote_django.egg-info
+htmlcov
+build
+__pycache__
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
