@@ -15,7 +15,9 @@ Clone o repositório e instale as dependências necessárias:
 
     git clone https://github.com/seu-usuario/meu_pacote_django.git
     cd meu_pacote_django
-    pip install -r requirements.txt```
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
 
 Para instalar em um projeto existe:
 
