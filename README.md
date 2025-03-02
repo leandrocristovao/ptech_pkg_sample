@@ -13,8 +13,8 @@ Este pacote tem objetivo de apresentar o básico para a criação de um pacote r
 
 Clone o repositório e instale as dependências necessárias:
 
-    git clone https://github.com/seu-usuario/meu_pacote_django.git
-    cd meu_pacote_django
+    git clone https://github.com/seu-usuario/ptech-pkg-sample.git
+    cd ptech-pkg-sample
     python -m venv .venv
     source .venv/bin/activate
     pip install -r requirements.txt
@@ -27,16 +27,16 @@ No seu projeto Django, abra o arquivo settings.py e adicione:
 
     INSTALLED_APPS = [
         ...
-        "meu_pacote_django",
+        "ptech-pkg-sample",
     ]
     
 Aplique as migrações
 
-    python manage.py migrate meu_pacote_django
+    python manage.py migrate ptech-pkg-sample
 
 Se houver problemas de migração, tente:
 
-    python manage.py makemigrations meu_pacote_django
+    python manage.py makemigrations ptech-pkg-sample
     python manage.py migrate
 
 ## 🚀 Importar e Usar no Código
@@ -44,7 +44,7 @@ Se houver problemas de migração, tente:
 Agora você pode importar os modelos e funcionalidades do pacote normalmente.
 Por exemplo, se o pacote define o model Setting:
 
-    from meu_pacote_django.models import Setting
+    from ptech-pkg-sample.models import Setting
 
     config = Setting.objects.create(key="modo_escuro", value="ativo")
     print(config)
