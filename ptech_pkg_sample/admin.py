@@ -1,4 +1,5 @@
 from django.contrib import admin
+from ptech_pkg_sample.models import Setting
 
 
 
