@@ -2,7 +2,7 @@
 INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",
-    "meu_pacote_django",
+    "ptech_pkg_sample",
 ]
 
 DATABASES = {

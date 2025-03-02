@@ -1,7 +1,7 @@
 # tests/test_models.py
+from ptech_pkg_sample.models import Setting
 import pytest
 from django.test import TestCase
-from meu_pacote_django.models import Setting
 
 
 @pytest.mark.django_db
