@@ -3,7 +3,7 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.contenttypes",
     "django.contrib.auth",
-    "ptech_pkg_setting",
+    'ptech_pkg_setting.app.PtechPkgSettingConfig',
 ]
 
 DATABASES = {
