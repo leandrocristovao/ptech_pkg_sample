@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="ptech_pkg_sample",
+    name="ptech_pkg_setting",
     version="0.1",
     packages=find_packages(),
     include_package_data=True,
@@ -11,7 +11,7 @@ setup(
     description="Um pacote Django reutilizável",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/leandrocristovao/ptech_pkg_sample.git",    
+    url="https://github.com/leandrocristovao/ptech_pkg_setting.git",    
     author="Leandro Cristóvão",
     author_email="leandrocristovao@gmail.com",
     license="MIT",

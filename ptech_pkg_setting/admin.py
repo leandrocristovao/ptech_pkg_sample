@@ -1,6 +1,5 @@
 from django.contrib import admin
-from ptech_pkg_sample.models import Setting
-
+from ptech_pkg_setting.models import Setting
 
 
 @admin.register(Setting)

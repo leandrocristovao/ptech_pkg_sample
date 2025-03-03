@@ -1,5 +1,5 @@
 # tests/test_models.py
-from ptech_pkg_sample.models import Setting
+from ptech_pkg_setting.models import Setting
 import pytest
 from django.test import TestCase
 
@@ -12,6 +12,7 @@ class SettingModelTest(TestCase):
         setting = Setting.objects.create(key="modo_escuro", value="ativo")
         self.assertEqual(setting.key, "MODO_ESCURO")
         self.assertEqual(setting.value, "ativo")
+        self.assertEqual(str(setting), "MODO_ESCURO: ativo")
 
     def test_read_setting(self):
         """Testa a leitura de um objeto Setting do banco de dados."""

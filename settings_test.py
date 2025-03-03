@@ -1,8 +1,9 @@
 # settings_test.py
 INSTALLED_APPS = [
+    "django.contrib.admin",
     "django.contrib.contenttypes",
     "django.contrib.auth",
-    "ptech_pkg_sample",
+    "ptech_pkg_setting",
 ]
 
 DATABASES = {
