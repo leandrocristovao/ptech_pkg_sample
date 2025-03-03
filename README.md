@@ -4,9 +4,11 @@ ptech_pkg_setting é um pacote Django que oferece funcionalidades para gerenciam
 
 Este pacote tem objetivo de apresentar o básico para a criação de um pacote reutilizável em DJANGO
 
+[![codecov](https://codecov.io/gh/leandrocristovao/ptech_pkg_setting/graph/badge.svg?token=9P6P2U0K4M)](https://codecov.io/gh/leandrocristovao/ptech_pkg_setting)
+
 ## 📌 Requisitos
 
-- Python 3.8+
+- Python 3.10+
 - Django 5.0+
 
 ## ⚙️ Instalação
