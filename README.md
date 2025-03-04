@@ -57,6 +57,58 @@ Se houver atualizações no repositório, atualize o pacote com:
 
     pip install --upgrade git+https://github.com/leandrocristovao/ptech_pkg_setting.git
 
+## ⚙️ Gerenciamento de Configurações
+
+O pacote inclui um comando personalizado do Django para listar, criar e excluir configurações armazenadas na tabela Setting.
+
+### 📌 Listar todas as configurações
+
+Para visualizar todas as configurações salvas no banco de dados, execute:
+
+    python manage.py settings_command list
+
+Exemplo de saída:
+
+    MODO_ESCURO: ativo
+    LINGUAGEM_PADRAO: pt-BR
+
+### 📌 Criar ou Atualizar uma configuração
+
+Para criar uma nova configuração ou atualizar uma existente, use:
+
+    python manage.py settings_command create --key=NOME_DA_CONFIG --value=VALOR
+
+exemplo:
+
+    python manage.py settings_command create --key=modo_escuro --value=ativo
+
+Saída esperada:
+
+    Configuração criada. MODO_ESCURO: ativo
+
+Se a configuração já existir, a saída será:
+
+    Configuração atualizada. MODO_ESCURO: ativo
+
+### 📌 Excluir uma configuração
+
+Para excluir uma configuração específica, use:
+
+    python manage.py settings_command delete --key=NOME_DA_CONFIG
+
+Exemplo:
+
+    python manage.py settings_command delete --key=modo_escuro
+
+Saída esperada:
+
+    Configuração 'MODO_ESCURO' removida.
+
+Caso a configuração não exista, será exibida uma mensagem de erro:
+
+    Erro: Configuração 'MODO_ESCURO' não encontrada.
+
+
 ## ✅ Como Executar os Testes
 
     pytest
