@@ -3,7 +3,8 @@ from django.db import models
 class Setting(models.Model):
     id = models.AutoField(primary_key=True)
     key = models.CharField(max_length=255, unique=True)
-    value = models.TextField()  # Armazena textos longos
+    value = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         self.key = self.key.upper()  # Converte a chave para maiúsculas

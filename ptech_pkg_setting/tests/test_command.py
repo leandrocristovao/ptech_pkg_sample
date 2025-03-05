@@ -46,7 +46,7 @@ class SettingsCommandTest(TestCase):
 
         # Testa a tentativa de criar uma chave duplicada
         call_command("settings_command", "create", "--key=DUPLICATE_KEY", "--value=VALUE2", stdout=self.out)
-        self.assertIn("Configuração atualizada. DUPLICATE_KEY: VALUE1\n", self.out.getvalue())
+        self.assertIn("Configuração já existe. DUPLICATE_KEY: VALUE1\n", self.out.getvalue())
 
         # Recupera a configuração existente
         setting = Setting.objects.get(key="DUPLICATE_KEY")
@@ -98,3 +98,43 @@ class SettingsCommandTest(TestCase):
         # Verifica se a configuração foi listada corretamente
         call_command("settings_command", "list", stdout=self.out)
         self.assertIn("LIST_KEY: LIST_VALUE", self.out.getvalue())
+
+    def test_get_setting(self):
+        """Testa a recuperação de uma configuração existente"""
+        
+        call_command("settings_command", "get", stderr=self.err)
+        self.assertIn('Erro: Para recuperar uma configuração, forneça --key.\n', self.err.getvalue())
+        
+        Setting.objects.create(key="EXISTING_KEY", value="EXISTING_VALUE")
+        call_command("settings_command", "get", "--key=EXISTING_KEY", stdout=self.out)
+        self.assertIn('Configuração encontrada: EXISTING_KEY: EXISTING_VALUE (None)\n', self.out.getvalue())
+        
+        call_command("settings_command", "get", "--key=NON_EXISTENT_KEY", stderr=self.err)
+        self.assertIn("Erro: Configuração 'NON_EXISTENT_KEY' não encontrada.\n", self.err.getvalue())
+
+    def test_setting_exists(self):
+        """Testa a verificação da existência de uma configuração"""
+
+        call_command("settings_command", "exists", stderr=self.err)
+        self.assertIn('Erro: Para verificar existência, forneça --key.\n', self.err.getvalue())
+
+        Setting.objects.create(key="EXISTING_KEY", value="EXISTING_VALUE")
+        call_command("settings_command", "exists", "--key=EXISTING_KEY", stdout=self.out)
+        self.assertIn("Configuração 'EXISTING_KEY' existe.\n", self.out.getvalue())
+        call_command("settings_command", "exists", "--key=NON_EXISTENT_KEY", stdout=self.out)
+        self.assertIn("Configuração 'EXISTING_KEY' existe.\n", self.out.getvalue())
+
+    def test_update_setting(self):
+        """Testa a atualização de uma configuração existente"""
+        
+        call_command("settings_command", "update", stderr=self.err)
+        self.assertIn('Erro: Para atualizar uma configuração, forneça --key e --value.\n', self.err.getvalue())
+                
+        Setting.objects.create(key="UPDATE_KEY", value="OLD_VALUE", description="Old description")
+        call_command("settings_command", "update", "--key=UPDATE_KEY", "--value=NEW_VALUE", "--description=New description", stdout=self.out)
+        setting = Setting.objects.get(key="UPDATE_KEY")
+        self.assertEqual(setting.value, "NEW_VALUE")
+        self.assertEqual(setting.description, "New description")
+        
+        call_command("settings_command", "update", "--key=NON_EXISTENT_KEY", "--value=VALUE", "--description=Description", stderr=self.err)
+        self.assertIn("Erro: Configuração 'NON_EXISTENT_KEY' não encontrada.\n", self.err.getvalue())
